@@ -9,7 +9,7 @@ Database will be filled, you can you use the user for testing with login: user1@
 1. Clone the repository: `git clone https://github.com/Taisiia-97/MsApi.git`
 2. Navigate to the project directory: `cd MsApi`
 3. Set credentials for your database in application.yml, you need to set username and password.
-4. Build the project using.
+4. Build the project using clean and build commands.
 5. Run the application.
 
 ## Dependencies
