@@ -9,6 +9,7 @@ import io.swagger.v3.oas.annotations.media.ExampleObject;
 import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -34,7 +35,7 @@ public class LoginController {
                     })))
     @PostMapping
     @ResponseStatus(HttpStatus.OK)
-    public TokenDto log(@RequestBody AuthenticationRequest authenticationRequest) {
+    public TokenDto log(@Valid @RequestBody AuthenticationRequest authenticationRequest) {
         return loginService.log(authenticationRequest);
     }
 }

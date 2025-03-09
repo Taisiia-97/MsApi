@@ -73,7 +73,7 @@ class ItemServiceTest {
                 new ItemDto(uuid2, "My item 2"));
 
         // when
-        List<ItemDto> itemsResult = itemService.getItemsByUser();
+        var itemsResult = itemService.getItemsByUser();
 
         // then
         assertThat(itemsResult).containsExactlyInAnyOrderElementsOf(expectedItems);

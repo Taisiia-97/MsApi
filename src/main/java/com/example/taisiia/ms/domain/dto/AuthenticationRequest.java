@@ -8,7 +8,7 @@ public record AuthenticationRequest(
         @Schema(description = "login", example = "user@gmail.com")
         @NotBlank(message = "Login is required")
         String login,
-        @Schema(description = "password", example = "SomePassword1")
+        @Schema(description = "password", example = "SomePassword1!")
         @NotBlank(message = "Password is required")
         String password
 ) {
