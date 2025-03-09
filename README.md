@@ -49,13 +49,19 @@ Database will be filled, you can you use the user for testing with login: user1@
 }
 ```
 ## Create a new item http://localhost:3000/items using POST method and use token for Bearer Authorization or add Authorize in swagger and put your token
+ ## Example request:
+  ```json
+{
+  "name": "My item"
+}
+```
 ## Get all items for user http://localhost:3000/items using GET method and use token for Bearer Authorization or add Authorize in swagger and put your token
 ## Example response:
   ```json
 [
   {
     "id": "3ee09787-29ea-4adf-8570-28f1999fb17f",
-    "nane": "My item"
+    "name": "My item"
   }
 ]
 ```
