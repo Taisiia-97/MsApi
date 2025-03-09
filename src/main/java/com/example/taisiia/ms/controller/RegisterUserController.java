@@ -10,8 +10,6 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
-import java.sql.SQLIntegrityConstraintViolationException;
-
 @RestController
 @RequestMapping("/register")
 @RequiredArgsConstructor
@@ -23,7 +21,7 @@ public class RegisterUserController {
     @ApiResponses(@ApiResponse(description = "Registering successfully.", responseCode = "204"))
     @PostMapping
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    public void  registerUser(@RequestBody @Valid RegisterUserRequest registerUserRequest) throws SQLIntegrityConstraintViolationException {
+    public void registerUser(@RequestBody @Valid RegisterUserRequest registerUserRequest) {
         userService.registerUser(registerUserRequest);
     }
 }

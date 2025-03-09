@@ -45,9 +45,7 @@ class UserDetailsServiceImplTest {
         when(userRepository.findByLogin(username)).thenReturn(Optional.empty());
 
         // when
-        var usernameNotFoundException = assertThrows(UsernameNotFoundException.class, () -> {
-            userDetailsService.loadUserByUsername(username);
-        });
+        var usernameNotFoundException = assertThrows(UsernameNotFoundException.class, () -> userDetailsService.loadUserByUsername(username));
 
         //then
         assertThat(usernameNotFoundException).hasMessage("User doesn't exist");
