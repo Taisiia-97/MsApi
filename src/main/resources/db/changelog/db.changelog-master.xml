@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd">
+
+
+    <changeSet id="1" author="t.yelisieieva">
+        <sql>
+            CREATE TABLE IF NOT EXISTS users (
+            id BINARY(16) PRIMARY KEY,
+            login VARCHAR(255) UNIQUE NOT NULL,
+            password VARCHAR(255) NOT NULL);
+        </sql>
+    </changeSet>
+
+    <changeSet id="2" author="t.yelisieieva">
+        <sql>
+            CREATE TABLE IF NOT EXISTS items (
+            id BINARY(16) PRIMARY KEY,
+            user_id BINARY(16) NOT NULL,
+            name VARCHAR(255) NOT NULL,
+            CONSTRAINT fk_entity_user FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE);
+        </sql>
+    </changeSet>
+
+    <changeSet id="3" author="t.yelisieieva">
+        <sql>
+            INSERT INTO users (id, login, password)
+            VALUES
+            (UNHEX(REPLACE('550e8400-e29b-41d4-a716-446655440000', '-', '')), 'user1@gmail.com', '$2a$12$rrGXbMTOGemp7Scz4f8EoehXTwFrsZ9HDlJd/I9hb0lp5oIyIOWlC'),
+            (UNHEX(REPLACE('550e8400-e29b-41d4-a716-446655440001', '-', '')), 'user2@gmail.com', '$2a$12$rrGXbMTOGemp7Scz4f8EoehXTwFrsZ9HDlJd/I9hb0lp5oIyIOWlC');
+        </sql>
+    </changeSet>
+
+    <changeSet id="4" author="t.yelisieieva">
+        <sql>
+            INSERT INTO items (id, user_id, name) VALUES
+            (UNHEX(REPLACE('348988467e844afbb077e97c7d126b5d', '-', '')), UNHEX(REPLACE('550e8400-e29b-41d4-a716-446655440000', '-', '')), 'My item 1'),
+            (UNHEX(REPLACE('6b25c1156abd48ef95320be5875a9842', '-', '')), UNHEX(REPLACE('550e8400-e29b-41d4-a716-446655440000', '-', '')), 'My item 2'),
+            (UNHEX(REPLACE('836af1049a2e4676b58fc0bb6294ab3f', '-', '')), UNHEX(REPLACE('550e8400-e29b-41d4-a716-446655440001', '-', '')), 'My item 1'),
+            (UNHEX(REPLACE('1ba8e37c0f8240a2b0b7e88c9398930a', '-', '')), UNHEX(REPLACE('550e8400-e29b-41d4-a716-446655440001', '-', '')), 'My item 2');
+        </sql>
+    </changeSet>
+
+</databaseChangeLog>

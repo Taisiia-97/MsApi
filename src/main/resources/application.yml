@@ -1,0 +1,24 @@
+server:
+  port: 3000
+spring:
+  datasource:
+    url: jdbc:mysql://localhost:3306/ms?createDatabaseIfNotExist=true&serverTimezone=UTC
+    username: root
+    password: 15111997Taechka
+  jpa:
+    show-sql: true
+    hibernate:
+      ddl-auto: none
+  springdoc:
+    swagger-ui:
+      path: /swagger-ui.html
+    api-docs:
+      path: /v3/api-docs
+  liquibase:
+    change-log: classpath:/db/changelog/db.changelog-master.xml
+
+
+
+jwt:
+  secret: uSeNh1Y+V+v8U8WztPz8uX58Nd7JHjz8Fid4jVwFJxE=
+
