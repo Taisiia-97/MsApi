@@ -24,13 +24,16 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 class LoginControllerTest {
 
     @Autowired
-    MockMvc mockMvc;
+    private MockMvc mockMvc;
+
+    @Autowired
+    private ObjectMapper objectMapper;
 
     @MockitoBean
     private LoginService loginService;
 
     @MockitoBean
-    UserDetailsService userDetailsService;
+    private UserDetailsService userDetailsService;
 
     @Test
     void shouldLogUser() throws Exception {
@@ -38,7 +41,6 @@ class LoginControllerTest {
         var token = "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1c2VyMjlAZ21haWwuY29tIiwiaWF0IjoxNzQxNTA3MDI1LCJleHAiOjE3NDE1MTA2MjV9.Tb8BnuvTUdV6_yP0e_UhXygV1wzb-wVJ5kzHSwJ9QLw";
         var tokenDto = new TokenDto(token);
         when(loginService.log(authenticationRequest)).thenReturn(tokenDto);
-        var objectMapper = new ObjectMapper();
 
         mockMvc.perform(post("/login")
                         .contentType(MediaType.APPLICATION_JSON)
@@ -54,7 +56,6 @@ class LoginControllerTest {
         var authenticationRequest = new AuthenticationRequest("user29!@gmail.com", "BadPassword!");
         when(loginService.log(authenticationRequest))
                 .thenThrow(new BadCredentialsException("Bad credentials"));
-        var objectMapper = new ObjectMapper();
 
         mockMvc.perform(post("/login")
                         .contentType(MediaType.APPLICATION_JSON)

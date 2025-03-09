@@ -21,18 +21,20 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 class RegisterUserControllerTest {
 
     @Autowired
-    MockMvc mockMvc;
+    private MockMvc mockMvc;
+
+    @Autowired
+    private ObjectMapper objectMapper;
 
     @MockitoBean
     private UserService userService;
 
     @MockitoBean
-    UserDetailsService userDetailsService;
+    private UserDetailsService userDetailsService;
 
     @Test
     void shouldRegisterUser() throws Exception {
         var registerUserRequest = new RegisterUserRequest("user30!@gmail.com", "Kotttkkkkkktttt2!");
-        var objectMapper = new ObjectMapper();
 
         mockMvc.perform(post("/register")
                         .contentType(MediaType.APPLICATION_JSON)

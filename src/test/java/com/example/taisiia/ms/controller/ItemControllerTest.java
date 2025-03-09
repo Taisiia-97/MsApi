@@ -33,13 +33,16 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 class ItemControllerTest {
 
     @Autowired
-    MockMvc mockMvc;
+    private MockMvc mockMvc;
+
+    @Autowired
+    private ObjectMapper objectMapper;
 
     @MockitoBean
     private ItemService itemService;
 
     @MockitoBean
-    UserDetailsService userDetailsService;
+    private UserDetailsService userDetailsService;
 
     @Test
     void shouldGetItems() throws Exception {
@@ -80,7 +83,6 @@ class ItemControllerTest {
         var login = "user29@gmail.com";
         var password = "Kotttkkkkkktttt2!";
         var token = generateToken(login);
-        var objectMapper = new ObjectMapper();
         var registerItemRequest = new RegisterItemRequest("My item");
         when(userDetailsService.loadUserByUsername(login)).thenReturn(
                 new User(login, password, Set.of(new SimpleGrantedAuthority("USER"))));
@@ -97,7 +99,6 @@ class ItemControllerTest {
     @Test
     void shouldNotCreateItemsIfTokenIsInvalid() throws Exception {
         var token = "Empty ";
-        var objectMapper = new ObjectMapper();
         var registerItemRequest = new RegisterItemRequest("My item");
         mockMvc.perform(post("/items")
                         .header("Authorization", token)
